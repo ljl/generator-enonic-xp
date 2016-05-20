@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title data-th-text="${pageTitle}">Enonic XP generator</title>
+</head>
+
+<body>
+<main data-th-attr="data-portal-region=${mainRegion.name}">
+    <div>
+        <h1>Page: <%= name %></h1>
+    </div>
+    <div data-th-each="component : ${mainRegion.components}" data-th-remove="tag">
+        <div data-portal-component="${component.path}" data-th-remove="tag"></div>
+    </div>
+</main>
+</body>
+</html>
