@@ -4,7 +4,13 @@
   <super-type><%= supertype %></super-type>
   <allow-child-content>true</allow-child-content>
   <form>
-    <field-set name="basic">
+    <% for (idx in fields) {
+        var fieldType = fields[idx].fieldType;
+        var fieldName = fields[idx].fieldName; %>
+        <%= fieldName %>
+        <%= fieldType %>
+        <% } %>
+    <!--field-set name="basic">
       <label><%= name %></label>
       <items>
         <input type="ContentSelector" name="author">
@@ -57,7 +63,6 @@
           <occurrences minimum="0" maximum="1"/>
         </input>
       </items>
-    </field-set>
+    </field-set-->
   </form>
-  <x-data mixin="menu-item"/>
 </content-type>

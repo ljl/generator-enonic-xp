@@ -2,49 +2,98 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var inputFields = [];
 
 module.exports = yeoman.Base.extend({
-  prompting: function () {
-    // Have Yeoman greet the user.
+  initializing: function () {
     this.log(yosay(
       'Welcome to the superb ' + chalk.red('generator-enonic-xp') + ' generator!'
     ));
-
-    var prompts = [{
-      type: 'input',
-      name: 'name',
-      message: 'Contenttype name?',
-      default: 'content'
-    }, {
-      type: 'confirm',
-      name: 'continue',
-      message: 'continue?',
-      default: true
-    }, {
-      when: function (response) {
-        return response.continue;
-      },
-      type: 'input',
-      name: 'supertype',
-      message: 'Supertype?',
-      default: 'base:structured'
-    }];
-
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
-    }.bind(this));
   },
-
+  prompting: {
+    askForData: askForData,
+    askForFields: askForFields
+  },
   writing: function () {
-    /*
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );*/
-  },
-
-  install: function () {
-    // this.installDependencies();
+    this.fs.copyTpl(
+      this.templatePath('_contenttypes/_contenttype.xml'),
+      this.destinationPath('src/main/resources/site/content-type/' + this.props.name + '.xml'), {
+        name: this.props.name,
+        supertype: this.props.supertype,
+        fields: inputFields
+      }
+    );
   }
 });
+
+function askForData() {
+  var prompts = [{
+    type: 'input',
+    name: 'name',
+    message: 'Contenttype name?',
+    default: 'content'
+  }, {
+    type: 'input',
+    name: 'supertype',
+    message: 'Supertype?',
+    default: 'base:structured'
+  }];
+
+  return this.prompt(prompts).then(function (props) {
+    // To access props later use this.props.someAnswer;
+    this.props = props;
+    this.async();
+  }.bind(this));
+}
+
+function askForFields() {
+  var cb = this.async();
+  askForField.call(this, cb);
+}
+
+function askForField(cb) {
+  var prompts = [{
+    type: 'confirm',
+    name: 'fieldAdd',
+    message: 'Do you want to add a field to your contenttype?',
+    default: true
+  }, {
+    when: function (response) {
+      return response.fieldAdd === true;
+    },
+    type: 'input',
+    name: 'fieldName',
+    message: 'What is the name of your field?'
+  }, {
+    when: function (response) {
+      return response.fieldAdd === true;
+    },
+    type: 'list',
+    name: 'fieldType',
+    message: 'What is the type of your field?',
+    choices: [{
+      value: 'TextLine',
+      name: 'TextLine'
+    }, {
+      value: 'TextArea',
+      name: 'TextArea'
+    }],
+    default: 0
+  }];
+
+  this.prompt(prompts, function (props) {
+    this.log("Done prompting: ", props);
+    if (props.fieldAdd) {
+      var field = {
+        fieldName: props.fieldName,
+        fieldType: props.fieldType
+      };
+      inputFields.push(field);
+    }
+    if (props.fieldAdd) {
+      askForField.call(that, cb);
+    } else {
+      cb();
+    }
+  }.bind(this));
+}
