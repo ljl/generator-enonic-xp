@@ -52,6 +52,7 @@ function askForFields() {
 }
 
 function askForField(cb) {
+  var that = this;
   var prompts = [{
     type: 'confirm',
     name: 'fieldAdd',
@@ -79,14 +80,32 @@ function askForField(cb) {
       name: 'TextArea'
     }],
     default: 0
+  }, {
+    when: function (response) {
+      return response.fieldAdd === true;
+    },
+    type: 'number',
+    name: 'fieldMaxOccurrences',
+    message: 'How many maximum occurrences?',
+    default: 1
+  }, {
+    when: function (response) {
+      return response.fieldAdd === true;
+    },
+    type: 'number',
+    name: 'fieldMinOccurrences',
+    message: 'How many maximum occurrences?',
+    default: 0
   }];
 
-  this.prompt(prompts, function (props) {
-    this.log("Done prompting: ", props);
+  return this.prompt(prompts).then(function (props) {
+    this.log('Done prompting: ', props);
     if (props.fieldAdd) {
       var field = {
         fieldName: props.fieldName,
-        fieldType: props.fieldType
+        fieldType: props.fieldType,
+        fieldMaxOccurrences: props.fieldMaxOccurrences,
+        fieldMinOccurrences: props.fieldMinOccurrences
       };
       inputFields.push(field);
     }

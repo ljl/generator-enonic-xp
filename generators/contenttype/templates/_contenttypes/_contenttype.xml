@@ -6,9 +6,14 @@
   <form>
     <% for (idx in fields) {
         var fieldType = fields[idx].fieldType;
-        var fieldName = fields[idx].fieldName; %>
-        <%= fieldName %>
-        <%= fieldType %>
+        var fieldName = fields[idx].fieldName;
+        var fieldMinOccurrences = fields[idx].fieldMinOccurrences;
+        var fieldMaxOccurrences = fields[idx].fieldMaxOccurrences; %>
+
+        <input type="<%= fieldType %>" name="<%= fieldName %>">
+          <label><%= fieldName %></label>
+          <occurrences minimum="<%= fieldMinOccurrences %>" maximum="<%= fieldMaxOccurrences %>"/>
+        </input>
         <% } %>
     <!--field-set name="basic">
       <label><%= name %></label>
