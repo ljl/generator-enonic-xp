@@ -17,7 +17,7 @@ module.exports = yeoman.Base.extend({
   writing: function () {
     this.fs.copyTpl(
       this.templatePath('_contenttypes/_contenttype.xml'),
-      this.destinationPath('src/main/resources/site/content-type/' + this.props.name + '.xml'), {
+      this.destinationPath('src/main/resources/site/content-type/' + this.props.name + '/' + this.props.name + '.xml'), {
         name: this.props.name,
         supertype: this.props.supertype,
         fields: inputFields
