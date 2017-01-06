@@ -18,6 +18,7 @@ function handleGet(req) {
 
     model.mainRegion = content.page.regions['main'];
     model.siteName = site.displayName;
+    model.request = req;
 
     return model;
   }

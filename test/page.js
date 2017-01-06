@@ -6,13 +6,15 @@ var helpers = require('yeoman-test');
 describe('generator-enonic-xp:page', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/page'))
-      .withPrompts({someAnswer: true})
+      .withPrompts({pagename: 'hello'})
       .toPromise();
   });
 
   it('creates files', function () {
     assert.file([
-      'dummyfile.txt'
+      'src/main/resources/site/pages/hello/hello.html',
+      'src/main/resources/site/pages/hello/hello.xml',
+      'src/main/resources/site/pages/hello/hello.js'
     ]);
   });
 });
