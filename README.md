@@ -1,8 +1,6 @@
 # generator-enonic-xp [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 >
 
-# NOTE: Very very WIP!
-
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-enonic-xp using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
@@ -12,18 +10,22 @@ npm install -g yo
 npm install -g generator-enonic-xp
 ```
 
-Then generate your new project:
+## Generate project
 
 ```bash
 yo enonic-xp
 ```
 
-## Getting To Know Yeoman
+## Subgenerators
+Part generator
+```bash
+yo enonic-xp:part
+```
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+Contenttype generator
+```bash
+yo enonic-xp:contenttype
+```
 
 ## License
 
