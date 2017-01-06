@@ -17,7 +17,7 @@ module.exports = yeoman.Base.extend({
   writing: function () {
     this.fs.copyTpl(
       this.templatePath('_contenttypes/_contenttype.xml'),
-      this.destinationPath('src/main/resources/site/content-type/' + this.props.name + '/' + this.props.name + '.xml'), {
+      this.destinationPath('src/main/resources/site/content-types/' + this.props.name + '/' + this.props.name + '.xml'), {
         name: this.props.name,
         supertype: this.props.supertype,
         fields: inputFields
@@ -94,12 +94,11 @@ function askForField(cb) {
     },
     type: 'number',
     name: 'fieldMinOccurrences',
-    message: 'How many maximum occurrences?',
+    message: 'How many minimum occurrences?',
     default: 0
   }];
 
   return this.prompt(prompts).then(function (props) {
-    this.log('Done prompting: ', props);
     if (props.fieldAdd) {
       var field = {
         fieldName: props.fieldName,
@@ -114,5 +113,5 @@ function askForField(cb) {
     } else {
       cb();
     }
-  }.bind(this));
+  });
 }
