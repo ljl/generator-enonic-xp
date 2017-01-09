@@ -2,7 +2,7 @@
 <content-type>
   <display-name><%= name %></display-name>
   <super-type><%= supertype %></super-type>
-  <allow-child-content>true</allow-child-content>
+  <allow-child-content><%= allowChildren %></allow-child-content>
   <form>
     <% for (idx in fields) {
         var fieldType = fields[idx].fieldType;
