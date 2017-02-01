@@ -84,6 +84,21 @@ function askForField(cb) {
     }, {
       value: 'TextArea',
       name: 'TextArea'
+    }, {
+      value: 'ContentSelector',
+      name: 'ContentSelector'
+    }, {
+      value: 'HtmlArea',
+      name: 'HtmlArea'
+    }, {
+      value: 'Tag',
+      name: 'Tag'
+    }, {
+      value: 'Checkbox',
+      name: 'Checkbox'
+    }, {
+      value: 'ImageSelector',
+      name: 'ImageSelector'
     }],
     default: 0
   }, {
