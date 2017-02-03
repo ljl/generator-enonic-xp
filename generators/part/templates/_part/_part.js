@@ -1,15 +1,15 @@
 var libs = {
   portal: require('/lib/xp/portal'),
-  thymeleaf: require('/lib/xp/thymeleaf')
+  <%= renderEngine %>: require('/lib/xp/<%= renderEngine %>')
 };
 
 exports.get = function (req) {
   var component = libs.portal.getComponent();
   var content = libs.portal.getContent();
-  var view = resolve('<%= name %>.html');
+  var view = resolve('<%= name %>.<%= templateExtension %>');
 
   return {
-    body: libs.thymeleaf.render(view, {
+    body: libs.<%= renderEngine %>.render(view, {
       request: req,
       content: content,
       component: component
