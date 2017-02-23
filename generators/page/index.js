@@ -45,7 +45,7 @@ module.exports = yeoman.Base.extend({
     var that = this;
     pageExtensions.forEach(function (ext) {
       var dest = 'src/main/resources/site/pages/' + that.props.pagename + '/' + that.props.pagename + '.' + ext;
-      that.template('_page/_page.' + ext, dest, {
+      that.template('_page/_page.' + ext + '.ejs', dest, {
         name: that.props.pagename,
         renderEngine: that.props.renderEngine,
         templateExtension: extension[that.props.renderEngine]

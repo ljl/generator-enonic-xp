@@ -121,7 +121,7 @@ module.exports = yeoman.Base.extend({
     );
 
     this.fs.copyTpl(
-      this.templatePath('_resources/_pages/_default/_default.js'),
+      this.templatePath('_resources/_pages/_default/_default.js.ejs'),
       this.destinationPath('src/main/resources/site/pages/default/default.js'), {
         renderEngine: this.props.renderEngine,
         templateExtension: extension[this.props.renderEngine]

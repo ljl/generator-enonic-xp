@@ -6,7 +6,7 @@ var helpers = require('yeoman-test');
 describe('generator-enonic-xp:page', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/page'))
-      .withPrompts({pagename: 'hello'})
+      .withPrompts({pagename: 'hello', renderEngine: 'thymeleaf'})
       .toPromise();
   });
 
