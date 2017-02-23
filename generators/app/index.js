@@ -89,6 +89,11 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('gradlew')
     );
 
+    this.fs.copy(
+      this.templatePath('_gradle/_gradlew.bat'),
+      this.destinationPath('gradlew.bat')
+    );
+
     this.fs.copyTpl(
       this.templatePath('_gradle/_build.gradle'),
       this.destinationPath('build.gradle'), {
