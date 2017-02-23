@@ -1,6 +1,6 @@
 {
   "name": "generator-enonic-xp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A Yeoman generator for Enonic XP",
   "homepage": "https://github.com/ljl/generator-enonic-xp",
   "author": {
