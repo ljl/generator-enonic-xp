@@ -10,7 +10,6 @@ var extension = {
 
 module.exports = yeoman.Base.extend({
   prompting: function () {
-    // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the perfect ' + chalk.red('generator-enonic-xp') + ' generator!'
     ));

@@ -1,8 +1,8 @@
 {
   "name": "generator-enonic-xp",
-  "version": "0.0.2",
-  "description": "",
-  "homepage": "",
+  "version": "1.0.0",
+  "description": "A Yeoman generator for Enonic XP",
+  "homepage": "https://github.com/ljl/generator-enonic-xp",
   "author": {
     "name": "Lasse Jul-Larsen",
     "email": "lassejl@gmail.com",
@@ -44,7 +44,9 @@
   "repository": "ljl/generator-enonic-xp",
   "scripts": {
     "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp",
+    "version": "npm test && git add .",
+    "postversion": "git push && git push --tags"
   },
   "license": "MIT"
 }
