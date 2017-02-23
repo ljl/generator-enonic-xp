@@ -29,8 +29,7 @@ dependencies {
     compile "com.enonic.xp:portal-api:${xpVersion}"
     include "com.enonic.xp:lib-content:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.xp:lib-thymeleaf:${xpVersion}"
-    include "com.enonic.xp:lib-xslt:${xpVersion}"
+    include "<%= renderEngineLib %>"
     include "com.enonic.xp:lib-auth:${xpVersion}"
 }
 
@@ -40,6 +39,11 @@ repositories {
     maven {
         url 'http://repo.enonic.com/public'
     }
+    <% if (renderEngine === "freemarker") { %>
+      maven {
+        url 'https://jitpack.io'
+      }
+    <% } %>
 }
 
 uploadArchives {
