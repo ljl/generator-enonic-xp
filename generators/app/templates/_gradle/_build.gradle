@@ -9,12 +9,13 @@ buildscript {
 
     dependencies {
         classpath "com.enonic.xp:gradle-plugin:${xpVersion}"
+        classpath "com.moowork.gradle:gradle-node-plugin:0.11"
     }
 }
 
 apply plugin: 'maven'
 apply plugin: 'com.enonic.xp.app'
-
+apply plugin: 'com.moowork.node'
 
 
 app {
@@ -46,6 +47,7 @@ repositories {
     <% } %>
 }
 
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -53,3 +55,20 @@ uploadArchives {
         }
     }
 }
+
+<% if (webpack) { %>
+node {
+    version = '6.10.2'
+    download = true
+}
+
+task webpack(type: NodeTask) {
+    script = file('node_modules/webpack/bin/webpack.js')
+}
+
+// processes your package.json before running webpack
+webpack.dependsOn 'npmInstall'
+
+build.dependsOn webpack
+build.mustRunAfter webpack
+<% } %>
