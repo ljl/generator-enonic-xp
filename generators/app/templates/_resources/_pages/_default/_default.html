@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <title data-th-text="${pageTitle}">Enonic XP generator</title>
+    <% if (webpack) { %>
+    <script type="text/javascript" th:src="${portal.assetUrl({'_path=bundle.js'})}"></script>
+    <% } %>
 </head>
 
 <body>

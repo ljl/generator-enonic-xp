@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <title>${pageTitle!"Enonic XP generator"}></title>
+  <% if (webpack) { %>
+  <script type="text/javascript" src="[@assetUrl path='bundle.js'/]"></script>
+  <% } %>
 </head>
 
 <body>
