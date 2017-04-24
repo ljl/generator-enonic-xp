@@ -16,6 +16,12 @@ yo enonic-xp
 ```
 
 ## Subgenerators
+
+Page generator
+```bash
+yo enonic-xp:page
+```
+
 Part generator
 ```bash
 yo enonic-xp:part
